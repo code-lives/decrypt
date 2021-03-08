@@ -1,0 +1,17 @@
+{
+    "name": "code-lives/decrypt",
+    "description": "this is decrypt",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "lijie1",
+            "email": "1873451007@163.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload":{
+    "psr-4":{"api\\decode\\":"src"}
+    }
+}
