@@ -27,7 +27,7 @@ class Apidecode
 	public function encode()
 	{
 		$time = time();
-		$digest = $this->digest([$this->password, $time]);
+		$digest = $this->digest($this->password, $time);
 		return array('sign' => $digest, 'time' => $time);
 	}
 	/**
@@ -39,7 +39,7 @@ class Apidecode
 		if ($timestamp + self::PARAM_EXP_LENGTH < time() && self::PARAM_EXP_AUTH === true) {
 			return false;
 		}
-		$digest = $this->digest([$this->password, $timestamp]);
+		$digest = $this->digest($this->password, $timestamp);
 		if ($digest != $sign) {
 			return false;
 		}
@@ -49,10 +49,8 @@ class Apidecode
 	 * @param array $params
 	 * @return string
 	 */
-	private  function digest($params = [])
+	private  function digest($password,$time)
 	{
-		sort($params, SORT_STRING);
-		//dd($params);
-		return base64_encode(md5(implode($params)));
+		return base64_encode(md5($password.$time));
 	}
 }
